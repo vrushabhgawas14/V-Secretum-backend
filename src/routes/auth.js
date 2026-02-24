@@ -33,7 +33,7 @@ router.post("/google", async (req, res) => {
     res.json({
       token,
       user: {
-        id: user._id,
+        _id: user._id,
         googleId: user.googleId,
         email: user.email,
         name: user.name,
