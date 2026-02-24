@@ -9,6 +9,8 @@ const passwordSchema = new mongoose.Schema(
     },
     title: { type: String, required: true },
     username: { type: String, default: "" }, // stored encrypted
+    email: { type: String, default: "" },
+    phoneNumber: { type: String, default: "" },
     password: { type: String, required: true }, // stored encrypted
     website: { type: String, default: "" },
     notes: { type: String, default: "" }, // stored encrypted

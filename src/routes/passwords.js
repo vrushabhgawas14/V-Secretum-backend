@@ -21,7 +21,16 @@ router.get("/", async (req, res) => {
 // POST create new password entry
 router.post("/", async (req, res) => {
   try {
-    const { title, username, password, website, notes, category } = req.body;
+    const {
+      title,
+      username,
+      email,
+      phoneNumber,
+      password,
+      website,
+      notes,
+      category,
+    } = req.body;
 
     if (!title || !password) {
       return res.status(400).json({ error: "Title and password are required" });
@@ -31,6 +40,8 @@ router.post("/", async (req, res) => {
       owner: req.userId,
       title,
       username,
+      email,
+      phoneNumber,
       password,
       website,
       notes,
@@ -44,10 +55,10 @@ router.post("/", async (req, res) => {
 });
 
 // PUT update a password entry
-router.put("/:id", async (req, res) => {
+router.put("/", async (req, res) => {
   try {
     const entry = await Password.findOne({
-      _id: req.params.id,
+      _id: req.query.id,
       owner: req.userId,
     });
 
@@ -55,10 +66,28 @@ router.put("/:id", async (req, res) => {
       return res.status(404).json({ error: "Entry not found" });
     }
 
-    const { title, username, password, website, notes, category } = req.body;
+    const {
+      title,
+      username,
+      email,
+      phoneNumber,
+      password,
+      website,
+      notes,
+      category,
+    } = req.body;
+
+    if (!title || !password) {
+      return res
+        .status(400)
+        .json({ error: "Title and password cannot be updated to blank." });
+    }
+
     Object.assign(entry, {
       title,
       username,
+      email,
+      phoneNumber,
       password,
       website,
       notes,
@@ -73,10 +102,10 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE a password entry
-router.delete("/:id", async (req, res) => {
+router.delete("/", async (req, res) => {
   try {
     const entry = await Password.findOneAndDelete({
-      _id: req.params.id,
+      _id: req.query.id,
       owner: req.userId,
     });
 
