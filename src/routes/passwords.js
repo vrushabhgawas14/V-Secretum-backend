@@ -55,10 +55,10 @@ router.post("/", async (req, res) => {
 });
 
 // PUT update a password entry
-router.put("/", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const entry = await Password.findOne({
-      _id: req.query.id,
+      _id: req.params.id,
       owner: req.userId,
     });
 
@@ -102,10 +102,10 @@ router.put("/", async (req, res) => {
 });
 
 // DELETE a password entry
-router.delete("/", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const entry = await Password.findOneAndDelete({
-      _id: req.query.id,
+      _id: req.params.id,
       owner: req.userId,
     });
 
