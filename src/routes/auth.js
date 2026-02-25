@@ -1,13 +1,27 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const { OAuth2Client } = require("google-auth-library");
 const User = require("../models/User");
 
+const client = new OAuth2Client(process.env.GOOGLE_WEB_CLIENT_ID);
+
 // Called from app after Google Sign-In succeeds
-// Google gives us user info — we register/login them in our DB
 router.post("/google", async (req, res) => {
   try {
-    const { googleId, email, name, photoUrl } = req.body;
+    const { idToken } = req.body;
+
+    if (!idToken) {
+      return res.status(400).json({ error: "idToken is required" });
+    }
+
+    const ticket = await client.verifyIdToken({
+      idToken,
+      audience: process.env.GOOGLE_WEB_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    const { sub: googleId, email, name, picture: photoUrl } = payload;
 
     if (!googleId || !email) {
       return res.status(400).json({ error: "googleId and email are required" });
