@@ -12,7 +12,7 @@ router.post("/google", async (req, res) => {
     const { idToken } = req.body;
 
     if (!idToken) {
-      return res.status(400).json({ error: "idToken is required" });
+      return res.status(400).json({ error: "idToken is required." });
     }
 
     const ticket = await client.verifyIdToken({
