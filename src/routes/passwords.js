@@ -18,6 +18,21 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET password with ID for logged-in user
+router.get("/:id", async (req, res) => {
+  try {
+    const password = await Password.findOne({
+      _id: req.params.id,
+      owner: req.userId,
+    }).sort({
+      updatedAt: -1,
+    });
+    res.json(password);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch password with ID" });
+  }
+});
+
 // POST create new password entry
 router.post("/", async (req, res) => {
   try {
