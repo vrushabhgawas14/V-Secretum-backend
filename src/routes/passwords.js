@@ -24,8 +24,6 @@ router.get("/:id", async (req, res) => {
     const password = await Password.findOne({
       _id: req.params.id,
       owner: req.userId,
-    }).sort({
-      updatedAt: -1,
     });
     res.json(password);
   } catch (err) {
