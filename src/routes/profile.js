@@ -20,8 +20,8 @@ router.get("/", async (req, res) => {
     const counts = {
       all: passwords.length,
       important: passwords.filter((p) => p.category === "important").length,
-      least_important: passwords.filter((p) => p.category === "least_important")
-        .length,
+      socials: passwords.filter((p) => p.category === "socials").length,
+      least_important: passwords.filter((p) => p.category === "least_important").length,
       work: passwords.filter((p) => p.category === "work").length,
       other: passwords.filter((p) => p.category === "other").length,
     };

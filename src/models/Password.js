@@ -16,7 +16,7 @@ const passwordSchema = new mongoose.Schema(
     notes: { type: String, default: "" }, // stored encrypted
     category: {
       type: String,
-      enum: ["important", "least_important", "work", "other"],
+      enum: ["important", "socials" , "least_important", "work", "other"],
       default: "other",
     },
   },
