@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
       updatedAt: -1,
     });
     const token = jwt.sign({ userId: req.userId }, process.env.JWT_SECRET, {
-      expiresIn: "5m",
+      expiresIn: "30d",
     });
     res.json({ token, passwords });
   } catch (err) {

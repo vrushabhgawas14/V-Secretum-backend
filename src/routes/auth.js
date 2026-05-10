@@ -41,7 +41,7 @@ router.post("/google", async (req, res) => {
 
     // Create JWT token — this is what the app stores and sends with every request
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1m",
+      expiresIn: "30d",
     });
 
     res.json({
