@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Password = require("../models/Password");
 const verifyToken = require("../middleware/verifyToken");
+const jwt = require("jsonwebtoken");
 
 // All routes below require a valid JWT
 router.use(verifyToken);
