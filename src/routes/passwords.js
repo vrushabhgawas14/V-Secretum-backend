@@ -12,7 +12,10 @@ router.get("/", async (req, res) => {
     const passwords = await Password.find({ owner: req.userId }).sort({
       updatedAt: -1,
     });
-    res.json(passwords);
+    const token = jwt.sign({ userId: req.userId }, process.env.JWT_SECRET, {
+      expiresIn: "5m",
+    });
+    res.json({ token, passwords });
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch passwords" });
   }
