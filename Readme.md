@@ -15,4 +15,6 @@ The app includes seamless Google Sign-In authentication, fast password search, c
 - Organized vault for socials, work, important accounts, and more
 - Open-source frontend and backend architecture
 
-### Frontend Repo link : [V-secretum](https://github.com/vrushabhgawas14/V-secretum)
+### Frontend Repo Link : [V Secretum](https://github.com/vrushabhgawas14/V-secretum)
+
+### App Download Link : [Download](https://github.com/vrushabhgawas14/V-secretum/releases/tag/1.0)
